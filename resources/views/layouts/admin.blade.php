@@ -3,16 +3,15 @@
 <head>
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <meta name="_token" content="{{csrf_token()}}">
     <title>Admin | Account</title>
     <link rel=icon type=image/png href= {{asset('img/icon.ico')}} />
     <link href="{{asset('http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin')}}"  rel=stylesheet>
-    {{--{!! HTML::style('css/style.css') !!}--}}
-    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+
     <link href="{{asset('css/bootstrap.min.css')}}" rel=stylesheet>
-    <!--Nifty Stylesheet [ REQUIRED ]-->
+
     <link   href="{{ asset('css/nifty.min.css') }}" rel=stylesheet>
 
-    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
     <link href="{{asset('css/nifty-demo-icons.min.css')}}"  rel="stylesheet">
 
 
@@ -30,13 +29,15 @@
     <link href="{{asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}"  rel=stylesheet>
     <link href="{{asset('css/chosen.min.css')}}"  rel=stylesheet>
 
-
+    <link href="{{asset('css/animate.min.css')}}"  rel=stylesheet>
+    <link href="{{asset('css/sweetalert.css')}}"  rel=stylesheet>
 
     <!--DataTables [ OPTIONAL ]-->
     <link href= {{asset('plugins/datatables/media/css/dataTables.bootstrap.css')}} rel="stylesheet">
     <link href= {{asset('plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css')}} rel="stylesheet">
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
+
     <script src="{{asset('js/pace.min.js')}}" ></script>
     <!--jQuery [ REQUIRED ]-->
 
@@ -72,7 +73,11 @@
     <!--Form validation [ SAMPLE ]-->
     <script src="{{asset('js/form-validation.js')}}"></script>
     <!--Form Component [ SAMPLE ]-->
+    <script src="{{asset('js/sweetalert-dev.js')}}"></script>
     <script src="{{asset('js/form-component.js')}}"></script>
+    <script src= {{asset('js/ui-alerts.js')}}></script>
+    <script src= {{asset('js/bootbox.min.js')}}></script>
+    <script src="{{asset('js/ui-modals.js')}}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
 </head>
 <body>
@@ -275,7 +280,7 @@
                         </div>
                     </li>
                 </ul>
-                <ul class="nav navbar-top-links pull-right">
+                <ul class="nav navbar-top-links pull-right" >
                     <li class=dropdown>
                         <a class="lang-selector dropdown-toggle" href=# data-toggle=dropdown>
 <span class=lang-selected>
@@ -284,7 +289,7 @@
 <span class=lang-name>English</span>
 </span>
                         </a>
-                        <ul class="head-list dropdown-menu">
+                        <ul class="head-list dropdown-menu" id="lang1">
                             <li>
                                 <a href=# class=active>
                                     <img class=lang-flag src= {{asset('img/flags/united-kingdom.png')}} alt=English>
@@ -416,7 +421,7 @@
                             <ul id=mainnav-menu class=list-group>
                                 <li class=list-header>Main Menu</li>
                                 <li>
-                                    <a href=#>
+                                    <a href=>
                                         <i class=psi-quill-2></i>
                                         <span class=menu-title>Dashboard</span>
                                     </a>
@@ -425,8 +430,8 @@
                                     <a href=#>
                                         <i class=psi-hipster-headphones></i>
                                         <span class=menu-title>
-<strong>Student</strong>
-</span>
+                                        <strong>Student</strong>
+                                        </span>
                                         <i class=arrow></i>
                                     </a>
                                     <ul class=collapse>
@@ -435,27 +440,27 @@
                                         <li><a href=#>Promtoe Student</a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href=#>
+                                <li class="{{Request::is('admin/teachers') ? 'active' : ''}}">
+                                    <a href={{route('teachers.index')}}>
                                         <i class=psi-gamepad-2></i>
                                         <span class=menu-title>Teacher
-</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li  class="{{ Request::is('admin/parents') ? 'active' : '' }}">
+                                    <a href={{route('parents.index')}} >
+                                        <i class=psi-usb></i>
+                                        <span class=menu-title>
+                                        Parents
+                                        </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href=#>
                                         <i class=psi-usb></i>
                                         <span class=menu-title>
-Parents
-</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <i class=psi-usb></i>
-                                        <span class=menu-title>
-Librarian
-</span>
+                                            Librarian
+                                        </span>
                                     </a>
                                 </li>
                                 <li>

@@ -22,11 +22,18 @@ Route::get('admin/studentadmit',function (){
 
     return view('admin.admitstudent');
 });
-Route::get('admin/parents',function (){
+//Route::group(['middleware'=>'admin'],function (){
+//
+//});
 
-    return view('admin.parents');
-});
 Route::resource('/admin/parents','ParentsController');
+Route::resource('/admin/teachers','TeacherController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/language-chooser','LanguageController@chnageLanguage');
+Route::post('/language',array(
+    'before'=>'csrf',
+    'as'    =>'language-chooser',
+    'uses'  =>'LanguageController@changeLanguage',
+));

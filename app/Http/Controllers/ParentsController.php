@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ParentsCreateRequest;
 use App\Parents;
 use Illuminate\Http\Request;
 
@@ -37,11 +38,25 @@ class ParentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ParentsCreateRequest $request)
     {
-//        $parents=new Parents;
-//        $parents->name
-        return $request->all();
+       $parents=new Parents;
+       $parents->name=$request->name;
+       $parents->profession=$request->profession;
+       $parents->address=$request->address;
+       $parents->phone=$request->phone;
+       $parents->email=$request->email;
+       $parents->password=$request->password;
+       $parents->save();
+       if ($parents->save())
+       {
+           return 1;
+       }
+       else
+       {
+           return 0;
+       }
+
     }
 
     /**
@@ -63,7 +78,9 @@ class ParentsController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $parentsedit = Parents::findOrFail($id);
+        return view('ajax.parentsedit', compact('parentsedit')); /////////view will be returned
     }
 
     /**
@@ -73,9 +90,11 @@ class ParentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ParentsCreateRequest $request, $id)
     {
-        //
+
+
+        return $request->all();
     }
 
     /**

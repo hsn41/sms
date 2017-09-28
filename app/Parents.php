@@ -10,7 +10,14 @@ class Parents extends Model
         'name',
         'profession',
         'address',
+        'phone',
         'email',
         'password'
     ];
+
+    public function setPasswordAttribute($password){
+        if (!empty($password)){
+            $this->attributes['password']=bcrypt($password);
+        }
+    }
 }
