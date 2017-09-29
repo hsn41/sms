@@ -35,7 +35,42 @@
     <!--DataTables [ OPTIONAL ]-->
     <link href= {{asset('plugins/datatables/media/css/dataTables.bootstrap.css')}} rel="stylesheet">
     <link href= {{asset('plugins/datatables/extensions/Responsive/css/responsive.dataTables.min.css')}} rel="stylesheet">
-
+    <style type="text/css">
+        #image-preview {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #ecf0f1;
+        }
+        #image-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+        #image-preview label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
     <script src="{{asset('js/jquery.min.js')}}"></script>
 
     <script src="{{asset('js/pace.min.js')}}" ></script>
@@ -73,7 +108,9 @@
     <!--Form validation [ SAMPLE ]-->
     <script src="{{asset('js/form-validation.js')}}"></script>
     <!--Form Component [ SAMPLE ]-->
-    <script src="{{asset('js/sweetalert-dev.js')}}"></script>
+
+    <script src="{{asset('js/jquery.uploadPreview.min.js')}}"></script>
+
     <script src="{{asset('js/form-component.js')}}"></script>
     <script src= {{asset('js/ui-alerts.js')}}></script>
     <script src= {{asset('js/bootbox.min.js')}}></script>

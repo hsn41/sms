@@ -14,7 +14,7 @@
                     <h4 class="modal-title" id="titleParent">Add Teacher</h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open(['method'=>'post','action'=>'ParentsController@store','files'=>true]) !!}
+                    {!! Form::open(['method'=>'post','id'=>'teachercreate','action'=>'TeacherController@store','files'=>true]) !!}
 
                     {{csrf_field()}}
                     <div class="panel-body">
@@ -73,14 +73,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    {!! Form::label('email','Photo') !!}
-                                    {!! Form::file('photo',null,['class'=>'form-control']) !!}
+
+                            <div class="col-sm-12" >
+                                <img src="" class="img-circle" alt="Teacher Photo">
+                                <div id="image-preview">
+                                    <label for="photo_id" id="image-label">UPLOAD PHOTO</label>
+                                    <input type="file" name="photo_id" id="image-upload" class="img-circle file" />
                                 </div>
-                            </div>
-                            <div class="col-sm-6" align="right">
-                                <img src="" class="img-circle" alt="teacher">
                             </div>
 
                         </div>
@@ -89,8 +88,8 @@
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                    <button type="button" class="btn btn-primary" id="addparent">Add Teacher</button>
-                    <button class="btn btn-success" style="display: none" id="savechanges">Save Changes</button>
+                    <button type="submit" class="btn btn-primary" id="addteacher">Add Teacher</button>
+
                 </div>
 
                 {!! Form::close() !!}
@@ -99,6 +98,7 @@
         </div>
 
     </div>
+
     <div id="page-content">
         <div class="panel">
             <div class="panel-heading">
@@ -115,38 +115,101 @@
                         <th>Photo</th>
                         <th class="min-tablet">Phone</th>
                         <th class="min-tablet">Email</th>
-                        <th class="min-desktop">Options</th>
+                        <th class="min-tablet">Address</th>
+                        <th class="min-desktop">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {{--@if($parents)--}}
-                        {{--@foreach($parents as $parents)--}}
-                            {{--<tr>--}}
-                                {{--<td class="parent">{{$parents->name}}</td>--}}
-                                {{--<td>{{$parents->phone}}</td>--}}
-                                {{--<td>{{$parents->address}}</td>--}}
-                                {{--<td>{{$parents->email}}</td>--}}
-                                {{--<td>{{$parents->profession}}</td>--}}
-                                {{--<td> <div class="btn-group">--}}
-                                        {{--<div class="dropdown">--}}
-                                            {{--<button class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" type="button">--}}
-                                                {{--Actions <i class="dropdown-caret"></i>--}}
-                                            {{--</button>--}}
-                                            {{--<ul class="dropdown-menu dropdown-menu-right">--}}
-                                                {{--<li><a href="#" class="parent" data-target="#demo-default-modal" data-toggle="modal">Edit</a></li>--}}
-                                                {{--<li><a href="#">Delete</a></li>--}}
-                                            {{--</ul>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        {{--@endforeach--}}
-                    {{--@endif--}}
+                    @if($teacher)
+                        @foreach($teacher as $teacher)
+                            <tr>
+                                <td class="parent">{{$teacher->first_name}}  {{$teacher->last_name}} </td>
+                                <td>bjhds</td>
+                                <td>{{$teacher->phone}}</td>
+                                <td>{{$teacher->email}}</td>
+                                <td>{{$teacher->address}}</td>
+
+                                <td>
+                                    <a href="#" class="parent btn btn-primary btn-xs" data-target="#demo-default-modal" data-toggle="modal">Edit</a>
+                                    <a href="#" class="parent btn btn-danger btn-xs">Delete</a>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
 
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.uploadPreview({
+                input_field: "#image-upload",
+                preview_box: "#image-preview",
+                label_field: "#image-label"
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+                }
+            });
+            $("#teachercreate").submit(function(event) {
+                event.preventDefault();
+                var photo_id = new FormData();
+                file.append('photo_id',$('.file')[0].files[0]);
+                posting.append('file',$('.file')[0].files[0]);
+                var $form = $( this ),
+                    url = $form.attr( 'action' );
+                contentType: false;
+                var posting = $.post( url, $("#teachercreate").serialize());
+                posting.done(function(data) {
+                    alert(data);
+                    if(data==1)
+                    {
 
+                        $('#demo-default-modal').modal('toggle');
+                        $.niftyNoty({
+                            type: 'success',
+                            container : 'floating',
+                            title : 'Teacher',
+                            message : 'Teacher data created successfully',
+                            closeBtn : false,
+                            timer : 9500,
+                            onShow:function(){
+                                location.reload();
+                            }
+                        });
+                    }
+                    elseif(data==0)
+                    {
+                        $('#demo-default-modal').modal('toggle');
+                        $.niftyNoty({
+                            type: 'danger',
+                            container : 'floating',
+                            title : 'Teacher',
+                            message : 'Teacher not created',
+                            closeBtn : false,
+                            timer : 9500,
+                            onShow:function(){
+                                location.reload();
+                            }
+                        });
+
+                    }
+
+
+
+
+
+                });
+            });
+        });
+
+    </script>
 @stop

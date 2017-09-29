@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TeacherRequest;
-use App\Teacher;
+use App\ClassManage;
 use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class ClassManageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teacher=Teacher::all();
-        return view('admin.teachers',compact('teacher'));
+        return view('admin.class');
     }
 
     /**
@@ -35,38 +33,18 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeacherRequest $request)
+    public function store(Request $request)
     {
-        $teacher =new Teacher();
-        $input=$request->all();
-        $nameofteacher=$request->first_name;
-        if ($file=$request->file('photo_id'))
-        {
-            $name=$nameofteacher.time() . $file->getClientOriginalName();
-            $file->move('images/teachers',$name);
-            $input['photo_id']=$name;
-            if (Teacher::create($input))
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-
-        }
-
-
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\ClassManage  $classManage
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show(ClassManage $classManage)
     {
         //
     }
@@ -74,10 +52,10 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\ClassManage  $classManage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit(ClassManage $classManage)
     {
         //
     }
@@ -86,10 +64,10 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teacher  $teacher
+     * @param  \App\ClassManage  $classManage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, ClassManage $classManage)
     {
         //
     }
@@ -97,10 +75,10 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\ClassManage  $classManage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(ClassManage $classManage)
     {
         //
     }

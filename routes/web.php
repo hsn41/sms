@@ -28,6 +28,7 @@ Route::get('admin/studentadmit',function (){
 
 Route::resource('/admin/parents','ParentsController');
 Route::resource('/admin/teachers','TeacherController');
+Route::resource('admin/classes','ClassManageController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

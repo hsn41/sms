@@ -191,7 +191,7 @@
             success:function(data){
                 $('#dynamic-content').show();
                 $('#modal-loader').hide();
-                $('#dynamic-content').html(data);
+                $('#dynamic-content').html(dat1a);
 
 
             }
