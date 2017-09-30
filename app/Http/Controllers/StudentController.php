@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\ClassManage;
+use App\Classes;
+use App\Parents;
+use App\Section;
+use App\Student;
+use App\Transport;
 use Illuminate\Http\Request;
 
-class ClassManageController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,11 @@ class ClassManageController extends Controller
      */
     public function index()
     {
-        return view('admin.class');
+        $classid=Classes::pluck('name','id')->all();
+        $section=Section::pluck('name_section','id')->all();
+        $parent=Parents::pluck('name','id')->all();
+        $transport=Transport::pluck('route_name','id')->all();
+        return view('admin.students',compact('classid','section','parent','transport'));
     }
 
     /**
@@ -35,16 +43,29 @@ class ClassManageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $input= $request->all();
+        if ($file=$request->file('photo'))
+        {
+            $name=time().date().$file->getClientOriginalName();
+            $file->move('images/students',$name);
+            $input['photo']=$name;
+            if (Student::create($input))
+            {
+                return redirect('admin/students');
+            }
+
+
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ClassManage  $classManage
+     * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(ClassManage $classManage)
+    public function show(Student $student)
     {
         //
     }
@@ -52,10 +73,10 @@ class ClassManageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ClassManage  $classManage
+     * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClassManage $classManage)
+    public function edit(Student $student)
     {
         //
     }
@@ -64,10 +85,10 @@ class ClassManageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ClassManage  $classManage
+     * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassManage $classManage)
+    public function update(Request $request, Student $student)
     {
         //
     }
@@ -75,10 +96,10 @@ class ClassManageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ClassManage  $classManage
+     * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassManage $classManage)
+    public function destroy(Student $student)
     {
         //
     }

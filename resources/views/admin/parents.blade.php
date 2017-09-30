@@ -60,12 +60,12 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     {!! Form::label('name','Name') !!}
-                                    {!! Form::text('name',null,['class'=>'form-control']) !!}
+                                    {!! Form::text('name',null,['class'=>'form-control','required'=>'true']) !!}
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('profession','Profession') !!}
-                                        {!! Form::text('profession',null,['class'=>'form-control']) !!}
+                                        {!! Form::text('profession',null,['class'=>'form-control','required'=>'true']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -73,13 +73,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('address','Address') !!}
-                                        {!! Form::text('address',null,['class'=>'form-control']) !!}
+                                        {!! Form::text('address',null,['class'=>'form-control','required'=>'true']) !!}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('mobile','Mobile') !!}
-                                        {!! Form::text('phone',null,['class'=>'form-control']) !!}
+                                        {!! Form::text('phone',null,['class'=>'form-control','required'=>'true']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -88,13 +88,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('email','Email') !!}
-                                        {!! Form::email('email',null,['class'=>'form-control']) !!}
+                                        {!! Form::email('email',null,['class'=>'form-control','required'=>'true']) !!}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         {!! Form::label('','Password') !!}
-                                        {!! Form::password('password', ['class' => 'form-control']); !!}
+                                        {!! Form::password('password', ['class' => 'form-control','required'=>'true']); !!}
 
                                     </div>
                                 </div>
@@ -189,15 +189,65 @@
             url: action,    ////getting form data-action from btn
             dataType :"html",
             success:function(data){
+
                 $('#dynamic-content').show();
                 $('#modal-loader').hide();
-                $('#dynamic-content').html(dat1a);
+                $('#dynamic-content').html(data);
 
 
             }
         });
     });
 </script>
+    <script>
+
+        /* attach a submit handler to the form */
+        $("#parentscreate").submit(function(event) {
+            alert("sd");
+            event.preventDefault();
+            var $form = $( this ),
+                url = $form.attr( 'action' );
+            var posting = $.post( url, $("#parentscreate").serialize());
+            posting.done(function(data) {
+                if(data==1)
+                {
+                    $('#demo-default-modal').modal('toggle');
+                    $.niftyNoty({
+                        type: 'success',
+                        container : 'floating',
+                        title : 'Parents',
+                        message : 'parents data created successfully',
+                        closeBtn : false,
+                        timer : 9500,
+                        onShow:function(){
+                            location.reload();
+                        }
+                    });
+                }
+                elseif(data==0)
+                {
+                    $('#demo-default-modal').modal('toggle');
+                    $.niftyNoty({
+                        type: 'danger',
+                        container : 'floating',
+                        title : 'Parents',
+                        message : 'Parents not created',
+                        closeBtn : false,
+                        timer : 9500,
+                        onShow:function(){
+                            location.reload();
+                        }
+                    });
+
+                }
+
+
+
+
+
+            });
+        });
+    </script>
 
 
 @stop

@@ -14,6 +14,9 @@ class Parents extends Model
         'email',
         'password'
     ];
+    public function student(){
+        return $this->belongsTo('App\Student');
+    }
 
     public function setPasswordAttribute($password){
         if (!empty($password)){

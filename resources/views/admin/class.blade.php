@@ -132,18 +132,18 @@
                         <div class="media">
 
                             <div class="media-body">
-                                {!! Form::open(['method'=>'post','id'=>'teachercreate','action'=>'TeacherController@store','files'=>true]) !!}
+                                {!! Form::open(['method'=>'post','action'=>'ClassesController@store']) !!}
                                 {{csrf_field()}}
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             {!! Form::label('name','Name') !!}
-                                            {!! Form::text('first_name',null,['class'=>'form-control']) !!}
+                                            {!! Form::text('name',null,['class'=>'form-control']) !!}
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 {!! Form::label('namenumeric','Name Numeric') !!}
-                                                {!! Form::text('last_name',null,['class'=>'form-control']) !!}
+                                                {!! Form::text('namenumeric',null,['class'=>'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
 
                                     <div class="modal-footer">
 
-                                        <button type="submit" class="btn btn-primary" id="addteacher">Add Class</button>
+                                        <button type="submit" class="btn btn-primary">Add Class</button>
 
                                     </div>
                                 </div>
@@ -168,31 +168,26 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Photo</th>
-                                        <th class="min-tablet">Phone</th>
-                                        <th class="min-tablet">Email</th>
-                                        <th class="min-tablet">Address</th>
+                                        <th>Numeric Name</th>
                                         <th class="min-desktop">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {{--@if($teacher)--}}
-                                    {{--@foreach($teacher as $teacher)--}}
-                                    {{--<tr>--}}
-                                    {{--<td class="parent">{{$teacher->first_name}}  {{$teacher->last_name}} </td>--}}
-                                    {{--<td>bjhds</td>--}}
-                                    {{--<td>{{$teacher->phone}}</td>--}}
-                                    {{--<td>{{$teacher->email}}</td>--}}
-                                    {{--<td>{{$teacher->address}}</td>--}}
+                                    @if($classes)
+                                    @foreach($classes as $classes)
+                                    <tr>
+                                    <td class="parent">{{$classes->name}}</td>
+                                    <td>{{$classes->namenumeric}}</td>
 
-                                    {{--<td>--}}
-                                    {{--<a href="#" class="parent btn btn-primary btn-xs" data-target="#demo-default-modal" data-toggle="modal">Edit</a>--}}
-                                    {{--<a href="#" class="parent btn btn-danger btn-xs">Delete</a>--}}
 
-                                    {{--</td>--}}
-                                    {{--</tr>--}}
-                                    {{--@endforeach--}}
-                                    {{--@endif--}}
+                                    <td>
+                                    <a href="#" class="parent btn btn-primary btn-xs" data-target="#demo-default-modal" data-toggle="modal">Edit</a>
+                                    <a href="#" class="parent btn btn-danger btn-xs">Delete</a>
+
+                                    </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
 
                                     </tbody>
                                 </table>
@@ -208,14 +203,6 @@
 
 
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.uploadPreview({
-                input_field: "#image-upload",
-                preview_box: "#image-preview",
-                label_field: "#image-label"
-            });
-        });
-    </script>
+
 
 @stop

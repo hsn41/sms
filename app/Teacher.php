@@ -18,6 +18,9 @@ class Teacher extends Model
 
 
     ];
+    public function section(){
+        return $this->hasOne('App\Section');
+    }
     public function setPasswordAttribute($password){
         if (!empty($password)){
             $this->attributes['password']=bcrypt($password);

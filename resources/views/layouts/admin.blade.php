@@ -213,9 +213,9 @@
                                         <li>
                                             <a href=# class=media>
                                                 <div class=media-left>
-<span class="icon-wrap bg-info">
-<i class="pli-monitor-3 icon-lg icon-lg"></i>
-</span>
+                                                <span class="icon-wrap bg-info">
+                                                    <i class="pli-monitor-3 icon-lg icon-lg"></i>
+                                                </span>
                                                 </div>
                                                 <div class=media-body>
                                                     <div class=text-nowrap>Square icon</div>
@@ -227,9 +227,9 @@
                                             <a href=# class=media>
                                                 <span class="label label-danger pull-right">New</span>
                                                 <div class=media-left>
-<span class="icon-wrap bg-purple">
-<i class="pli-paintbrush icon-lg icon-lg"></i>
-</span>
+                                                <span class="icon-wrap bg-purple">
+                                                    <i class="pli-paintbrush icon-lg icon-lg"></i>
+                                                </span>
                                                 </div>
                                                 <div class=media-body>
                                                     <div class=text-nowrap>Square icon with label</div>
@@ -257,9 +257,9 @@
                                     <div class="text-center bg-info pad-all">
                                         <h4 class="text-light mar-no">Weekend shopping</h4>
                                         <div class="pad-ver box-inline">
-<span class="icon-wrap icon-wrap-lg icon-circle bg-trans-light">
-<i class="pli-add-cart icon-4x"></i>
-</span>
+                                            <span class="icon-wrap icon-wrap-lg icon-circle bg-trans-light">
+                                            <i class="pli-add-cart icon-4x"></i>
+                                            </span>
                                         </div>
                                         <p class=pad-btm>
                                             Members get <span class="text-lg text-bold">50%</span> more points. Lorem ipsum dolor sit amet!
@@ -510,7 +510,7 @@
                                 </li>
 
 
-                                <li>
+                                <li >
                                     <a href=#>
                                         <i class=psi-hipster-headphones></i>
                                         <span class=menu-title>
@@ -518,14 +518,14 @@
                                         </span>
                                         <i class=arrow></i>
                                     </a>
-                                    <ul class=collapse>
-                                        <li><a href=#>Manage Classes</a></li>
-                                        <li><a href=#>Manage Sections</a></li>
+                                    <ul class="{{ Request::is('admin/classes') ? 'collapse in' : '' }}">
+                                        <li class="{{ Request::is('admin/classes') ? 'active' : '' }}"><a href="{{route('classes.index')}}">Manage Classes</a></li>
+                                        <li class="{{ Request::is('admin/sections') ? 'active' : '' }}"><a href="{{route('sections.index')}}">Manage Sections</a></li>
                                         <li><a href=#>Academic Syllabus</a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href=#>
+                                <li class="{{ Request::is('admin/transport') ? 'active' : '' }}">
+                                    <a href="{{route('transport.index')}}">
                                         <i class=psi-usb></i>
                                         <span class=menu-title>
                                             Transport
