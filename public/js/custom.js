@@ -22,7 +22,6 @@ $(document).ready(function () {
     $(document).on('click','.show-delete-modal',function () {
 
         var action =$(this).data('action');
-        alert(action);
         $('#deleteForm').attr('action',action);
     });
 
@@ -45,6 +44,7 @@ $(document).ready(function () {
         });
 
     });
+$(document).ready(function(){$.uploadPreview({input_field:"#image-upload",preview_box:"#image-preview",label_field:"#image-label"})});
 
     $('#flash_message').trigger('keyup');
 

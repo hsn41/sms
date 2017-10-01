@@ -6,6 +6,48 @@
     <ol class=breadcrumb>
         <li class="active">Teachers Details</li>
     </ol>
+
+    <div id="page-content">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Teachers</h3>
+            </div>
+            <div id="demo-custom-toolbar2" class="table-toolbar-left">
+                <button id="demo-dt-addrow-btn" class="btn btn-primary addnew" data-target="#demo-default-modal" data-toggle="modal"><i class="demo-pli-plus"></i> Add New Teacher</button>
+            </div>
+            <div class="panel-body">
+                <table id="demo-dt-addrow" class="table table-hover table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th class="min-tablet">Phone</th>
+                        <th class="min-tablet">Email</th>
+                        <th class="min-tablet">Address</th>
+                        <th class="min-desktop">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if($teacher)
+                        @foreach($teacher as $teacher)
+                            <tr>
+                                <td class="parent">{{$teacher->first_name}} {{$teacher->last_name}} </td>
+                                <td>bjhds</td>
+                                <td>{{$teacher->phone}}</td>
+                                <td>{{$teacher->email}}</td>
+                                <td>{{$teacher->address}}</td>
+                                <td>
+                                    <a class="show-edit-modal btn btn-mint btn-icon btn-circle" data-toggle="modal" href="#editModal" data-action="teachers/{{$teacher->id}}/edit"><i class="psi-pencil icon-md"></i></a>
+                                    <a data-target="#demo-sm-modal" data-toggle="modal" class="btn btn-danger btn-icon btn-circle show-delete-modal" data-action="teachers/{{$teacher->id}}"><i class="psi-close icon-md"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="demo-default-modal" role="dialog" tabindex="-1" aria-labelledby="demo-default-modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -84,47 +126,5 @@
             </div>
         </div>
     </div>
-    <div id="page-content">
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">Teachers</h3>
-            </div>
-            <div id="demo-custom-toolbar2" class="table-toolbar-left">
-                <button id="demo-dt-addrow-btn" class="btn btn-primary addnew" data-target="#demo-default-modal" data-toggle="modal"><i class="demo-pli-plus"></i> Add New Teacher</button>
-            </div>
-            <div class="panel-body">
-                <table id="demo-dt-addrow" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Photo</th>
-                        <th class="min-tablet">Phone</th>
-                        <th class="min-tablet">Email</th>
-                        <th class="min-tablet">Address</th>
-                        <th class="min-desktop">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if($teacher)
-                        @foreach($teacher as $teacher)
-                            <tr>
-                                <td class="parent">{{$teacher->first_name}} {{$teacher->last_name}} </td>
-                                <td>bjhds</td>
-                                <td>{{$teacher->phone}}</td>
-                                <td>{{$teacher->email}}</td>
-                                <td>{{$teacher->address}}</td>
-                                <td>
-                                    <a href="#" class="parent btn btn-primary btn-xs" data-target="#demo-default-modal" data-toggle="modal">Edit</a>
-                                    <a href="#" class="parent btn btn-danger btn-xs">Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">$(document).ready(function(){$.uploadPreview({input_field:"#image-upload",preview_box:"#image-preview",label_field:"#image-label"})});</script>
-    <script>$(document).ready(function(){$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="_token"]').attr("content")}});$("#teachercreate").submit(function(e){e.preventDefault();var d=new FormData();file.append("photo_id",$(".file")[0].files[0]);b.append("file",$(".file")[0].files[0]);var a=$(this),c=a.attr("action");contentType:false;var b=$.post(c,$("#teachercreate").serialize());b.done(function(f){alert(f);if(f==1){$("#demo-default-modal").modal("toggle");$.niftyNoty({type:"success",container:"floating",title:"Teacher",message:"Teacher data created successfully",closeBtn:false,timer:9500,onShow:function(){location.reload()}})}elseif(f==0);$("#demo-default-modal").modal("toggle");$.niftyNoty({type:"danger",container:"floating",title:"Teacher",message:"Teacher not created",closeBtn:false,timer:9500,onShow:function(){location.reload()}})})})});</script>
+
 @stop

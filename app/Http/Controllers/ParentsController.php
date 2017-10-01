@@ -108,8 +108,22 @@ class ParentsController extends Controller
     {
         $parent =  Parents::find($id);
         if($parent){
-            $parent->update();
-        }
+            if ($parent->delete()){
+                    Session::flash('flash_title','Parents');
+                    Session::flash('flash_message','Successfully Deleted');
+                    Session::flash('flash_type','success');
+                    return redirect('admin/parents');
+                }
+
+            else
+            {
+                Session::flash('flash_title','Parents');
+                Session::flash('flash_message','Not Deleted');
+                Session::flash('flash_type','danger');
+                return redirect('admin/parents');
+            }
+
+            }
         else
         {
             return redirect('admin/parents');
@@ -127,10 +141,19 @@ class ParentsController extends Controller
     {
         $parent =  Parents::find($id);
         if($parent){
-                $parent->delete();
+
+                if ($parent->delete()){
+                    Session::flash('flash_title','Parents');
+                    Session::flash('flash_message','Successfully Deleted');
+                    Session::flash('flash_type','success');
+                    return redirect('admin/parents');
+                }
         }
         else
         {
+            Session::flash('flash_title','Parents');
+            Session::flash('flash_message','Not Deleted');
+            Session::flash('flash_type','danger');
             return redirect('admin/parents');
         }
     }

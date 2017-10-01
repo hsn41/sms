@@ -622,6 +622,8 @@
             </div>
         </aside>
     </div>
+    @include('layouts.delete')
+    @include('layouts.alerts')
     <footer id=footer>
         <div class="show-fixed pad-rgt pull-right">
             You have <a href=# class=text-main><span class="badge badge-danger">3</span> pending action.</a>
