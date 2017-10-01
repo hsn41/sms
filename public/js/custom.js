@@ -1,68 +1,51 @@
 $(document).ready(function () {
 
-    $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
-        }
-    });
-    $("#teachercreate").submit(function(event) {
-        event.preventDefault();
-        var photo_id = new FormData();
-        file.append('file',$('.file')[0].files[0]);
-        posting.append('file',$('.file')[0].files[0]);
-        var $form = $( this ),
-            url = $form.attr( 'action' );
-        contentType: false,
-      var posting = $.post( url, $("#teachercreate").serialize());
-        posting.done(function(data) {
-            alert(data);
-            if(data==1)
-            {
+    $(document).on('click','.show-edit-modal',function () {
+        var action = $(this).data('action');
+        $('#dynamic-content').hide();
+        $('#modal-loader').show();
+        $.ajax({
+            type: "GET",    //////////type post or get
+            url: action,    ////getting form data-action from btn
+            dataType :"html",
+            success:function(data){
 
-                $('#demo-default-modal').modal('toggle');
-                $.niftyNoty({
-                    type: 'success',
-                    container : 'floating',
-                    title : 'Teacher',
-                    message : 'Teacher data created successfully',
-                    closeBtn : false,
-                    timer : 9500,
-                    onShow:function(){
-                        location.reload();
-                    }
-                });
-            }
-            elseif(data==0)
-            {
-                $('#demo-default-modal').modal('toggle');
-                $.niftyNoty({
-                    type: 'danger',
-                    container : 'floating',
-                    title : 'Teacher',
-                    message : 'Teacher not created',
-                    closeBtn : false,
-                    timer : 9500,
-                    onShow:function(){
-                        location.reload();
-                    }
-                });
+                $('#dynamic-content').show();
+                $('#modal-loader').hide();
+                $('#dynamic-content').html(data);
+
 
             }
-
-
-
-
-
         });
     });
 
+    $(document).on('click','.show-delete-modal',function () {
+
+        var action =$(this).data('action');
+        alert(action);
+        $('#deleteForm').attr('action',action);
+    });
 
 
 
 
     /* attach a submit handler to the form */
+    $("#flash_message").keyup(function(event) {
+        var title = $("#flash_title").val() ;
+        var message = $("#flash_message").val();
+        var type = $("#flash_type").val();
+        $.niftyNoty({
+            type: type,
+            container : 'floating',
+            title : title,
+            message : message,
+            closeBtn : false,
+            timer : 5000
 
+        });
 
+    });
 
+    $('#flash_message').trigger('keyup');
 
 });

@@ -6,6 +6,7 @@ use App\Classes;
 use App\Section;
 use App\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SectionController extends Controller
 {
@@ -43,11 +44,10 @@ class SectionController extends Controller
         $input= $request->all();
         if (Section::create($input))
         {
-            $section=Section::all();
-
-            $classid=Classes::pluck('name','id')->all();
-            $teacher=Teacher::pluck('first_name','id')->all();
-           return redirect('admin/sections');
+            flash('Section added Successfully')->success()->important();
+            Session::flash('flash_title','Flash Title');
+            Session::flash('flash_message','Flash Message');
+            return redirect('admin/sections');
 
 
         }

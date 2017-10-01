@@ -71,51 +71,6 @@
             text-align: center;
         }
     </style>
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-
-    <script src="{{asset('js/pace.min.js')}}" ></script>
-    <!--jQuery [ REQUIRED ]-->
-
-    <!--BootstrapJS [ RECOMMENDED ]-->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <!--Nifty Admin [ RECOMMENDED ]-->
-    <script src="{{asset('js/nifty.min.js')}}" ></script>
-    <!--FooTable [ OPTIONAL ]-->
-    <script src="{{asset('plugins/fooTable/dist/footable.all.min.js')}}" ></script>
-    <!--FooTable Example [ SAMPLE ]-->
-    <script src="{{asset('js/tables-footable.js')}}"></script>
-
-    <!--Demo script [ DEMONSTRATION ]-->
-    <script src= {{asset('js/nifty-demo.min.js')}}></script>
-
-
-    <!--Bootstrap Validator [ OPTIONAL ]-->
-    <script src="{{asset('plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
-    <!--Bootstrap Datepicker [ OPTIONAL ]-->
-    <script src="{{asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
-    <!--Masked Input [ OPTIONAL ]-->
-    <script src="{{asset('plugins/masked-input/jquery.maskedinput.min.js')}}"></script>
-
-    <script src= {{asset('plugins/datatables/media/js/jquery.dataTables.js')}}></script>
-    <script src= {{asset('plugins/datatables/media/js/dataTables.bootstrap.js')}}></script>
-    <script src= {{asset('plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}></script>
-
-    <!--DataTables Sample [ SAMPLE ]-->
-    <script src= {{asset('js/tables-datatables.js')}}></script>
-    <!--Form validation [ SAMPLE ]-->
-    <script src="{{asset('js/chosen.jquery.min.js')}}"></script>
-
-    <!--Form validation [ SAMPLE ]-->
-    <script src="{{asset('js/form-validation.js')}}"></script>
-    <!--Form Component [ SAMPLE ]-->
-
-    <script src="{{asset('js/jquery.uploadPreview.min.js')}}"></script>
-
-    <script src="{{asset('js/form-component.js')}}"></script>
-    <script src= {{asset('js/ui-alerts.js')}}></script>
-    <script src= {{asset('js/bootbox.min.js')}}></script>
-    <script src="{{asset('js/ui-modals.js')}}"></script>
-    <script src="{{asset('js/custom.js')}}"></script>
 </head>
 <body>
 <div id=container class="effect mainnav-lg navbar-fixed">
@@ -680,5 +635,52 @@
         <i class="pci-chevron chevron-up"></i>
     </button>
 </div>
+
+<script src="{{asset('js/jquery.min.js')}}"></script>
+
+<script src="{{asset('js/pace.min.js')}}" ></script>
+<!--jQuery [ REQUIRED ]-->
+
+<!--BootstrapJS [ RECOMMENDED ]-->
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<!--Nifty Admin [ RECOMMENDED ]-->
+<script src="{{asset('js/nifty.min.js')}}" ></script>
+<!--FooTable [ OPTIONAL ]-->
+<script src="{{asset('plugins/fooTable/dist/footable.all.min.js')}}" ></script>
+<!--FooTable Example [ SAMPLE ]-->
+<script src="{{asset('js/tables-footable.js')}}"></script>
+
+<!--Demo script [ DEMONSTRATION ]-->
+<script src= {{asset('js/nifty-demo.min.js')}}></script>
+
+
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<script src="{{asset('plugins/bootstrap-validator/bootstrapValidator.min.js')}}"></script>
+<!--Bootstrap Datepicker [ OPTIONAL ]-->
+<script src="{{asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+<!--Masked Input [ OPTIONAL ]-->
+<script src="{{asset('plugins/masked-input/jquery.maskedinput.min.js')}}"></script>
+
+<script src= {{asset('plugins/datatables/media/js/jquery.dataTables.js')}}></script>
+<script src= {{asset('plugins/datatables/media/js/dataTables.bootstrap.js')}}></script>
+<script src= {{asset('plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}></script>
+
+<!--DataTables Sample [ SAMPLE ]-->
+<script src= {{asset('js/tables-datatables.js')}}></script>
+<!--Form validation [ SAMPLE ]-->
+<script src="{{asset('js/chosen.jquery.min.js')}}"></script>
+
+<!--Form validation [ SAMPLE ]-->
+<script src="{{asset('js/form-validation.js')}}"></script>
+<!--Form Component [ SAMPLE ]-->
+
+<script src="{{asset('js/jquery.uploadPreview.min.js')}}"></script>
+
+<script src="{{asset('js/form-component.js')}}"></script>
+<script src= {{asset('js/ui-alerts.js')}}></script>
+<script src= {{asset('js/bootbox.min.js')}}></script>
+<script src="{{asset('js/ui-modals.js')}}"></script>
+<script src="{{asset('js/custom.js')}}"></script>
+
 </body>
 </html>

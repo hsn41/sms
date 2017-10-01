@@ -10,7 +10,10 @@
         <!--Panel with Tabs (Icon)-->
         <!--===================================================-->
         <div class="panel panel-dark">
-
+        @include('flash::message')
+            @if(Session::has('flash_message'))
+                <p class="alert alert-info">{{ Session::get('flash_message') }}</p>
+            @endif
             <!--Panel heading-->
             <div class="panel-heading">
                 <div class="panel-control">

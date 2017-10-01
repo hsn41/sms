@@ -8,9 +8,11 @@
         "php": ">=7.0.0",
         "devmarketer/easynav": "^1.0",
         "fideloper/proxy": "~3.3",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5.0",
+        "needim/noty": "^3.1",
         "prologue/alerts": "^0.4.1",
         "uxweb/sweet-alert": "^1.4"
     },

@@ -15,15 +15,19 @@
                     <h4 class="modal-title" id="mySmallModalLabel" >Delete</h4>
                 </div>
                 <div class="modal-body">
+                    <form action="#" id="deleteForm" method="post">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" name="_method" value="DELETE">
+
                     <p>Are You Sure ?To Delete.</p>
 
                 </div>
                 <!--Modal footer-->
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                    <button class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
-
+                </form>
 
             </div>
         </div>
@@ -37,10 +41,13 @@
                     <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
                     <h4 class="modal-title" id="titleParent">Edit Parent</h4>
                 </div>
+                <div id="modal-loader" class="loader" style="display: none; text-align: center;padding: 20px">
+                    <img src="{{asset('images/ajaxloader.gif')}}">
+                </div>
                 <div class="modal-body" id="dynamic-content">
 
 
-            </div>
+                 </div>
         </div>
 
     </div>
@@ -111,6 +118,7 @@
                         </ul>
                     </div>
                 @endif
+                @include('layouts.alerts')
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
                     <button type="submit" class="btn btn-primary" id="addparent">Add Parent</button>
@@ -164,8 +172,8 @@
    
 </li>
 
-                                                <li><a data-target="#demo-sm-modal" data-toggle="modal" class="btn btn-default btn-labeled psi-close"
-                                                       data-action="parents/{{$parents->id}}/edit">Delete</a></li>
+                                                <li><a data-target="#demo-sm-modal" data-toggle="modal" class="btn btn-default btn-labeled psi-close show-delete-modal"
+                                                       data-action="parents/{{$parents->id}}">Delete</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -179,75 +187,6 @@
             </div>
         </div>
     </div>
-<script type="text/javascript">
-    $(document).on('click','.show-edit-modal',function () {
-        var action = $(this).data('action');
-        $('#dynamic-content').hide();
-        $('#modal-loader').show();
-        $.ajax({
-            type: "GET",    //////////type post or get
-            url: action,    ////getting form data-action from btn
-            dataType :"html",
-            success:function(data){
-
-                $('#dynamic-content').show();
-                $('#modal-loader').hide();
-                $('#dynamic-content').html(data);
-
-
-            }
-        });
-    });
-</script>
-    <script>
-
-        /* attach a submit handler to the form */
-        $("#parentscreate").submit(function(event) {
-            alert("sd");
-            event.preventDefault();
-            var $form = $( this ),
-                url = $form.attr( 'action' );
-            var posting = $.post( url, $("#parentscreate").serialize());
-            posting.done(function(data) {
-                if(data==1)
-                {
-                    $('#demo-default-modal').modal('toggle');
-                    $.niftyNoty({
-                        type: 'success',
-                        container : 'floating',
-                        title : 'Parents',
-                        message : 'parents data created successfully',
-                        closeBtn : false,
-                        timer : 9500,
-                        onShow:function(){
-                            location.reload();
-                        }
-                    });
-                }
-                elseif(data==0)
-                {
-                    $('#demo-default-modal').modal('toggle');
-                    $.niftyNoty({
-                        type: 'danger',
-                        container : 'floating',
-                        title : 'Parents',
-                        message : 'Parents not created',
-                        closeBtn : false,
-                        timer : 9500,
-                        onShow:function(){
-                            location.reload();
-                        }
-                    });
-
-                }
-
-
-
-
-
-            });
-        });
-    </script>
 
 
 @stop

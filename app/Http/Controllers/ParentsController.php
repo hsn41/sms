@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ParentsCreateRequest;
 use App\Parents;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 class ParentsController extends Controller
@@ -50,11 +51,17 @@ class ParentsController extends Controller
        $parents->save();
        if ($parents->save())
        {
-           return 1;
+           Session::flash('flash_title','Parents');
+           Session::flash('flash_message','Successfully Added');
+           Session::flash('flash_type','danger');
+           return redirect('admin/parents');
        }
        else
        {
-           return 0;
+           Session::flash('flash_title','Flash Title');
+           Session::flash('flash_message','Not Created');
+           Session::flash('flash_type','danger');
+           return redirect('admin/parents');
        }
 
     }
@@ -79,8 +86,15 @@ class ParentsController extends Controller
     public function edit($id)
     {
 
-        $parentsedit = Parents::findOrFail($id);
-        return view('ajax.parentsedit', compact('parentsedit')); /////////view will be returned
+        $parentsedit = Parents::find($id);
+
+        if ($parentsedit)
+        {
+            return view('ajax.parentsedit', compact('parentsedit')); /////////view will be returned
+        }else{
+            return "<div>";
+        }
+
     }
 
     /**
@@ -92,9 +106,15 @@ class ParentsController extends Controller
      */
     public function update(ParentsCreateRequest $request, $id)
     {
+        $parent =  Parents::find($id);
+        if($parent){
+            $parent->update();
+        }
+        else
+        {
+            return redirect('admin/parents');
+        }
 
-
-        return $request->all();
     }
 
     /**
@@ -105,6 +125,13 @@ class ParentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $parent =  Parents::find($id);
+        if($parent){
+                $parent->delete();
+        }
+        else
+        {
+            return redirect('admin/parents');
+        }
     }
 }

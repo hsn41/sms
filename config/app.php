@@ -166,6 +166,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Prologue\Alerts\AlertsServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
 
         /*
